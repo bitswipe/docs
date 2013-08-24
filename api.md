@@ -77,7 +77,7 @@ User resource has the following properties:
 
 Bitcoin payments usually take longer than authorizing a credit card payment. Thus, creating a payment doesn't block until we receive a payment - we use webhooks instead.
 
-Webhook is sent as a HTTP POST request with JSON body to a URL specified in user account (in `webhooks` property).
+Webhooks are sent as a HTTP POST request with JSON body to a URL specified in user account (in `webhooks` property).
 
 If you want to test webhooks out, we recommend using [requestb.in](http://requestb.in/).
 
