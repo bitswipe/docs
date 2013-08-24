@@ -69,3 +69,31 @@ User resource has the following properties:
 
  * `name` - string, username
  * `email` - string, user's email address
+ * `webhooks` - object, specifying what URLs [webhooks](#webhooks) should be sent to
+     * `accepted` - string, what URL [accepted](#accepted) webhook should be sent to
+     * `paid` - string, what URL [paid](#paid) webhook should be sent to
+
+## Webhooks
+
+Bitcoin payments usually take longer than authorizing a credit card payment. Thus, creating a payment doesn't block until we receive a payment - we use webhooks instead.
+
+Webhook is sent as a HTTP POST request with JSON body to a URL specified in user account (in `webhooks` property).
+
+If you want to test webhooks out, we recommend using [requestb.in](http://requestb.in/).
+
+There are 2 types of webhooks:
+
+### Accepted
+Sent when a Bitcoin payment is accepted. It means that customer paid the requested amount.
+
+Webhook body is a [Payment](#payment) object.
+
+You can use this hook to, for example, send your user an email with a digital good you're selling or update user's subscription data.
+
+### Paid
+Sent when payout is complete (once a day, if any payments occured during the day).
+
+Webhook body has the following attributes:
+
+  * `amount` - string, total amount we paid you (sum of all transactions from the day minus fees)
+  * `payments` - array of [Payment](#payment) objects included in this payout
