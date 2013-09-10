@@ -41,7 +41,7 @@ Payment resource has the following properties:
 
 #### Methods
 
-##### Create - `PUT /payments`
+##### Create - `POST /payments`
 
 ###### Arguments
 
